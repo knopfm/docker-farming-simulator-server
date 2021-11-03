@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  farmingserver:
+    build: .
+    restart: always
+    ports:
+      - '8080:80'
+    volumes:
+      - './data:/app/drive_c/Program Files (x86)/Farming Simulator 2019'
+      - './save:/app/drive_c/User/farmer/Dokumente/My Games/FarmingSimulator2019'
