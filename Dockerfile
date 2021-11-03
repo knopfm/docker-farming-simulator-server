@@ -1,7 +1,7 @@
 FROM ubuntu:focal
 
-#ARG MONO_VER="4.7.5"
-#ARG GECKO_VER="2.47"
+ARG MONO_VER="6.4.0"
+ARG GECKO_VER="2.47"
 
 RUN dpkg --add-architecture i386 \
     && apt-get update \
@@ -10,10 +10,10 @@ RUN dpkg --add-architecture i386 \
     && echo 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' > /etc/apt/sources.list.d/wine.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends supervisor winbind winehq-stable winetricks xvfb haproxy \
-#    && mkdir -p /usr/share/wine/mono /usr/share/wine/gecko \
-#    && wget https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}.msi -O /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
-#    && wget https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86.msi -O /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
-#    && wget https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86_64.msi -O /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86_64.msi \
+    && mkdir -p /usr/share/wine/mono /usr/share/wine/gecko \
+    && wget https://dl.winehq.org/wine/wine-mono/${MONO_VER}/wine-mono-${MONO_VER}-x86.msi -O /usr/share/wine/mono/wine-mono-${MONO_VER}.msi \
+    && wget https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86.msi -O /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86.msi \
+    && wget https://dl.winehq.org/wine/wine-gecko/${GECKO_VER}/wine_gecko-${GECKO_VER}-x86_64.msi -O /usr/share/wine/gecko/wine_gecko-${GECKO_VER}-x86_64.msi \
     && useradd -ms /bin/bash farmer \
     && mkdir /app \
     && chown farmer:farmer /app \
